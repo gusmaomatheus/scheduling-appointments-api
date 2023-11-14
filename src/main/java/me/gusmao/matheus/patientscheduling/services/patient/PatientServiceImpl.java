@@ -1,11 +1,14 @@
 package me.gusmao.matheus.patientscheduling.services.patient;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.dto.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
 import me.gusmao.matheus.patientscheduling.repositories.PatientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -19,5 +22,14 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = new Patient(data);
 
         return this.repository.save(patient);
+    }
+
+    @Override
+    public Patient findById(UUID id) {
+        Patient patient = this.repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
+        );
+
+        return patient;
     }
 }
