@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.gusmao.matheus.patientscheduling.dto.PatientDTO;
 
 import java.util.UUID;
 
@@ -21,4 +22,11 @@ public class Patient {
     private String lastName;
     private String cpf;
     private String email;
+
+    public Patient(PatientDTO data) {
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.cpf = data.cpf();
+        this.email = data.email();
+    }
 }
