@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.dto;
+package me.gusmao.matheus.patientscheduling.dtos;
 
 public record PatientDTO(
         String firstName,

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.gusmao.matheus.patientscheduling.dto.PatientDTO;
+import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 
 import java.util.UUID;
 

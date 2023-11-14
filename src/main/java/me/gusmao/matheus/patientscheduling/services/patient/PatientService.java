@@ -1,6 +1,6 @@
 package me.gusmao.matheus.patientscheduling.services.patient;
 
-import me.gusmao.matheus.patientscheduling.dto.PatientDTO;
+import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
 
 import java.util.Set;
