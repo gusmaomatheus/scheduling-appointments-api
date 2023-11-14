@@ -5,13 +5,12 @@ import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
 import me.gusmao.matheus.patientscheduling.services.patient.PatientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/api/patient")
 @RequiredArgsConstructor
 public class PatientController {
 
@@ -22,5 +21,12 @@ public class PatientController {
         Patient patient = this.service.save(data);
 
         return ResponseEntity.status(201).body(patient);
+    }
+
+    @GetMapping
+    public ResponseEntity<Set<Patient>> getAll() {
+        Set<Patient> patients = this.service.getAll();
+
+        return ResponseEntity.status(200).body(patients);
     }
 }
