@@ -3,6 +3,6 @@ CREATE TABLE schedule(
     description varchar(255),
     schedule_date timestamp,
     created_at timestamp,
-    patient_id varchar(50),
+    patient_id integer,
     CONSTRAINT fk_schedule_patient FOREIGN KEY(patient_id) REFERENCES patient(id)
 );
