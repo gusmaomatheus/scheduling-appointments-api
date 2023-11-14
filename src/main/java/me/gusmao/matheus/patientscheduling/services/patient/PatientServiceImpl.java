@@ -8,7 +8,10 @@ import me.gusmao.matheus.patientscheduling.repositories.PatientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -31,5 +34,12 @@ public class PatientServiceImpl implements PatientService {
         );
 
         return patient;
+    }
+
+    @Override
+    public Set<Patient> getAll() {
+        Set<Patient> patients = new HashSet<>(this.repository.findAll());
+
+        return patients;
     }
 }
