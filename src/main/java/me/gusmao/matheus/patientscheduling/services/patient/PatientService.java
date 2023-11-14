@@ -4,15 +4,14 @@ import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
 
 import java.util.Set;
-import java.util.UUID;
 
 public interface PatientService {
 
     Patient save(PatientDTO data);
 
-    Patient findById(UUID id);
+    Patient findById(Long id);
 
     Set<Patient> getAll();
 
-    void delete(UUID id);
+    void delete(Long id);
 }

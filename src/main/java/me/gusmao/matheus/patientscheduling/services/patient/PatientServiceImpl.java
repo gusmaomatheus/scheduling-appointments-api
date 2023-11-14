@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -27,7 +26,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient findById(UUID id) {
+    public Patient findById(Long id) {
         Patient patient = this.repository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
         );
@@ -43,7 +42,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(Long id) {
         this.repository.deleteById(id);
     }
 }
