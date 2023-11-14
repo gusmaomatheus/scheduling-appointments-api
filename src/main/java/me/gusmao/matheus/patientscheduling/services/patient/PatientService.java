@@ -13,4 +13,6 @@ public interface PatientService {
     Patient findById(UUID id);
 
     Set<Patient> getAll();
+
+    void delete(UUID id);
 }

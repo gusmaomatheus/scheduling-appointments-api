@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -41,5 +40,10 @@ public class PatientServiceImpl implements PatientService {
         Set<Patient> patients = new HashSet<>(this.repository.findAll());
 
         return patients;
+    }
+
+    @Override
+    public void delete(UUID id) {
+        this.repository.deleteById(id);
     }
 }
