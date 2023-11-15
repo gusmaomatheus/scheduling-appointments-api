@@ -28,6 +28,8 @@ public class PatientServiceImpl implements PatientService {
     public Patient save(PatientDTO data) {
         Patient patient = PatientMapper.transform(data);
 
+        this.formatCpf(patient);
+
         return this.repository.save(patient);
     }
 
@@ -60,11 +62,20 @@ public class PatientServiceImpl implements PatientService {
 
         BeanUtils.copyProperties(data, patient, nullProperties);
 
+        this.formatCpf(patient);
+
         this.repository.save(patient);
     }
 
     @Override
     public void delete(Long id) {
         this.repository.deleteById(id);
+    }
+
+    public void formatCpf(Patient patient) {
+        String cpf = patient.getCpf();
+        String cpfFormatted = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
+
+        patient.setCpf(cpfFormatted);
     }
 }
