@@ -35,9 +35,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient findById(Long id) {
-        Patient patient = this.repository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
-        );
+        Patient patient = this.repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id)));
 
         return patient;
     }
@@ -53,10 +51,7 @@ public class PatientServiceImpl implements PatientService {
     public void update(Long id, PatientDTO data) {
         final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
 
-        String[] nullProperties = Stream.of(beanWrapper.getPropertyDescriptors())
-                .map(FeatureDescriptor::getName)
-                .filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null)
-                .toArray(String[]::new);
+        String[] nullProperties = Stream.of(beanWrapper.getPropertyDescriptors()).map(FeatureDescriptor::getName).filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null).toArray(String[]::new);
 
         Patient patient = this.findById(id);
 
@@ -72,7 +67,7 @@ public class PatientServiceImpl implements PatientService {
         this.repository.deleteById(id);
     }
 
-    public void formatCpf(Patient patient) {
+    private void formatCpf(Patient patient) {
         String cpf = patient.getCpf();
         String cpfFormatted = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
 
