@@ -9,6 +9,9 @@ import me.gusmao.matheus.patientscheduling.repositories.ScheduleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -31,5 +34,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         );
 
         return schedule;
+    }
+
+    @Override
+    public Set<Schedule> getAll() {
+        Set<Schedule> schedules = new HashSet<>(this.repository.findAll());
+
+        return schedules;
     }
 }
