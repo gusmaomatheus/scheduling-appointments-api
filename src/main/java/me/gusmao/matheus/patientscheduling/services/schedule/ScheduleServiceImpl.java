@@ -1,5 +1,6 @@
 package me.gusmao.matheus.patientscheduling.services.schedule;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.dtos.ScheduleDTO;
 import me.gusmao.matheus.patientscheduling.entities.Schedule;
@@ -21,5 +22,14 @@ public class ScheduleServiceImpl implements ScheduleService {
         Schedule schedule = mapper.transform(data);
 
         return this.repository.save(schedule);
+    }
+
+    @Override
+    public Schedule findById(Long id) {
+        Schedule schedule = this.repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Não foi encontrado nenhuma consulta com o id '%s'.".formatted(id))
+        );
+
+        return schedule;
     }
 }

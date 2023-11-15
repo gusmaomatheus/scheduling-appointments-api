@@ -6,4 +6,6 @@ import me.gusmao.matheus.patientscheduling.entities.Schedule;
 public interface ScheduleService {
 
     Schedule save(ScheduleDTO data);
+
+    Schedule findById(Long id);
 }
