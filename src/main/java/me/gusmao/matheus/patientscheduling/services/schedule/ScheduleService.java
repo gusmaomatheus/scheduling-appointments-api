@@ -11,6 +11,7 @@ public interface ScheduleService {
 
     Schedule findById(Long id);
 
-
     Set<Schedule> getAll();
+
+    void update(Long id, ScheduleDTO data);
 }

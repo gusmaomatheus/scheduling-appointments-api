@@ -6,9 +6,14 @@ import me.gusmao.matheus.patientscheduling.dtos.ScheduleDTO;
 import me.gusmao.matheus.patientscheduling.entities.Schedule;
 import me.gusmao.matheus.patientscheduling.mappers.ScheduleMapper;
 import me.gusmao.matheus.patientscheduling.repositories.ScheduleRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.FeatureDescriptor;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,5 +46,20 @@ public class ScheduleServiceImpl implements ScheduleService {
         Set<Schedule> schedules = new HashSet<>(this.repository.findAll());
 
         return schedules;
+    }
+
+    @Override
+    public void update(Long id, ScheduleDTO data) {
+        final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
+        Schedule schedule = this.findById(id);
+
+        String[] nullProperties = Arrays.stream(beanWrapper.getPropertyDescriptors())
+                .map(FeatureDescriptor::getName)
+                .filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null)
+                .toArray(String[]::new);
+
+        BeanUtils.copyProperties(data, schedule, nullProperties);
+
+        this.repository.save(schedule);
     }
 }
