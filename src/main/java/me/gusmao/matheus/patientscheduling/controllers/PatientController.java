@@ -36,4 +36,11 @@ public class PatientController {
 
         return ResponseEntity.status(200).body(patient);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        this.service.delete(id);
+
+        return ResponseEntity.status(204).build();
+    }
 }
