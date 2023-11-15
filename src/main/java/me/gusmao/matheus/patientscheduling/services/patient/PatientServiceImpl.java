@@ -5,11 +5,16 @@ import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
 import me.gusmao.matheus.patientscheduling.repositories.PatientRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.FeatureDescriptor;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -39,6 +44,22 @@ public class PatientServiceImpl implements PatientService {
         Set<Patient> patients = new HashSet<>(this.repository.findAll());
 
         return patients;
+    }
+
+    @Override
+    public void update(Long id, PatientDTO data) {
+        final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
+
+        String[] nullProperties = Stream.of(beanWrapper.getPropertyDescriptors())
+                .map(FeatureDescriptor::getName)
+                .filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null)
+                .toArray(String[]::new);
+
+        Patient patient = this.findById(id);
+
+        BeanUtils.copyProperties(data, patient, nullProperties);
+
+        this.repository.save(patient);
     }
 
     @Override

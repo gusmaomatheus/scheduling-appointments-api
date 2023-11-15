@@ -13,5 +13,7 @@ public interface PatientService {
 
     Set<Patient> getAll();
 
+    void update(Long id, PatientDTO data);
+
     void delete(Long id);
 }
