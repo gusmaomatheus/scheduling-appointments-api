@@ -20,6 +20,7 @@ public class Schedule {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String description;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime date;
     @CreationTimestamp @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime createdAt;
