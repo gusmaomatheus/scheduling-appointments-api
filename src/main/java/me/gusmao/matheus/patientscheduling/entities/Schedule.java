@@ -1,6 +1,5 @@
 package me.gusmao.matheus.patientscheduling.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "schedule")
@@ -17,12 +15,13 @@ import java.util.UUID;
 @Data
 public class Schedule {
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String description;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @Column(name = "schedule_date")
     private LocalDateTime date;
-    @CreationTimestamp @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @ManyToOne
     private Patient patient;
