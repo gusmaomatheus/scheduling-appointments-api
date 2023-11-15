@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
+import me.gusmao.matheus.patientscheduling.mappers.PatientMapper;
 import me.gusmao.matheus.patientscheduling.repositories.PatientRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
@@ -25,7 +26,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient save(PatientDTO data) {
-        Patient patient = new Patient(data);
+        Patient patient = PatientMapper.transform(data);
 
         return this.repository.save(patient);
     }
