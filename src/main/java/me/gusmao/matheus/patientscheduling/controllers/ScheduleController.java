@@ -5,10 +5,7 @@ import me.gusmao.matheus.patientscheduling.dtos.ScheduleDTO;
 import me.gusmao.matheus.patientscheduling.entities.Schedule;
 import me.gusmao.matheus.patientscheduling.services.schedule.ScheduleServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/schedule")
@@ -22,5 +19,12 @@ public class ScheduleController {
         Schedule schedule = this.service.save(data);
 
         return ResponseEntity.status(201).body(schedule);
+    }
+
+    @GetMapping("{/id}")
+    public ResponseEntity<Schedule> findById(@PathVariable Long id) {
+        Schedule schedule = this.service.findById(id);
+
+        return ResponseEntity.status(200).body(schedule);
     }
 }
