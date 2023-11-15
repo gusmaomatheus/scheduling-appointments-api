@@ -37,6 +37,15 @@ public class PatientController {
         return ResponseEntity.status(200).body(patient);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Patient> update(@PathVariable Long id, @RequestBody PatientDTO data) {
+        this.service.update(id, data);
+
+        Patient patient = this.service.findById(id);
+
+        return ResponseEntity.status(200).body(patient);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         this.service.delete(id);
