@@ -1,5 +1,6 @@
 package me.gusmao.matheus.patientscheduling.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.entities.Patient;
@@ -17,7 +18,7 @@ public class PatientController {
     private final PatientService service;
 
     @PostMapping
-    public ResponseEntity<Patient> save(@RequestBody PatientDTO data) {
+    public ResponseEntity<Patient> save(@Valid @RequestBody PatientDTO data) {
         Patient patient = this.service.save(data);
 
         return ResponseEntity.status(201).body(patient);
@@ -38,7 +39,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> update(@PathVariable Long id, @RequestBody PatientDTO data) {
+    public ResponseEntity<Patient> update(@PathVariable Long id, @Valid @RequestBody PatientDTO data) {
         this.service.update(id, data);
 
         Patient patient = this.service.findById(id);
