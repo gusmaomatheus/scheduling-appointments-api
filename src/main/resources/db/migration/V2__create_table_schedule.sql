@@ -1,5 +1,5 @@
 CREATE TABLE schedule(
-    id varchar(50) PRIMARY KEY,
+    id serial PRIMARY KEY,
     description varchar(255),
     schedule_date timestamp,
     created_at timestamp,
