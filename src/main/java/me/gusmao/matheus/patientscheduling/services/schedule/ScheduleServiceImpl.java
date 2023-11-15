@@ -62,4 +62,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         this.repository.save(schedule);
     }
+
+    @Override
+    public void delete(Long id) {
+        this.repository.deleteById(id);
+    }
 }

@@ -14,4 +14,6 @@ public interface ScheduleService {
     Set<Schedule> getAll();
 
     void update(Long id, ScheduleDTO data);
+
+    void delete(Long id);
 }
