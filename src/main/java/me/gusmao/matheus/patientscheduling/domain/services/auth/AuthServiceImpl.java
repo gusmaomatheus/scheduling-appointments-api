@@ -1,11 +1,12 @@
-package me.gusmao.matheus.patientscheduling.services.auth;
+package me.gusmao.matheus.patientscheduling.domain.services.auth;
 
 import lombok.RequiredArgsConstructor;
+import me.gusmao.matheus.patientscheduling.adapters.mappers.UserMapper;
 import me.gusmao.matheus.patientscheduling.config.SecurityConfig;
-import me.gusmao.matheus.patientscheduling.dtos.auth.LoginDTO;
-import me.gusmao.matheus.patientscheduling.dtos.auth.RegisterDTO;
-import me.gusmao.matheus.patientscheduling.entities.User;
-import me.gusmao.matheus.patientscheduling.repositories.UserRepository;
+import me.gusmao.matheus.patientscheduling.domain.dtos.auth.LoginDTO;
+import me.gusmao.matheus.patientscheduling.domain.dtos.auth.RegisterDTO;
+import me.gusmao.matheus.patientscheduling.domain.models.User;
+import me.gusmao.matheus.patientscheduling.domain.repositories.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.Authentication;
@@ -30,7 +31,9 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     @Override
     public void register(RegisterDTO data) {
         String encryptedPassword = this.securityConfig.passwordEncoder().encode(data.password());
-        User user = new User(data.login(), encryptedPassword, data.role());
+        User user = UserMapper.toRegisterDTO(data);
+
+        user.setPassword(encryptedPassword);
 
         this.repository.save(user);
     }
