@@ -3,8 +3,9 @@ package me.gusmao.matheus.patientscheduling.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.dtos.auth.LoginDTO;
+import me.gusmao.matheus.patientscheduling.dtos.auth.LoginResponseDTO;
 import me.gusmao.matheus.patientscheduling.dtos.auth.RegisterDTO;
-import me.gusmao.matheus.patientscheduling.services.auth.AuthService;
+import me.gusmao.matheus.patientscheduling.services.auth.AuthServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,13 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthService service;
+    private final AuthServiceImpl service;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid LoginDTO data) throws Exception {
-        this.service.login(data);
+        String token = this.service.login(data);
+        LoginResponseDTO responseDTO = new LoginResponseDTO(token);
 
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(200).body(responseDTO);
     }
 
     @PostMapping("/register")

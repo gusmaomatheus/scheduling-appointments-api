@@ -8,6 +8,7 @@ import me.gusmao.matheus.patientscheduling.entities.User;
 import me.gusmao.matheus.patientscheduling.repositories.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +20,7 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
 
     private final UserRepository repository;
     private final SecurityConfig securityConfig;
+    private final AuthTokenService tokenService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -34,8 +36,12 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     }
 
     @Override
-    public void login(LoginDTO data) throws Exception {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var auth = this.securityConfig.authenticationManager(new AuthenticationConfiguration()).authenticate(usernamePassword);
+    public String login(LoginDTO data) throws Exception {
+        UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        Authentication auth = this.securityConfig.authenticationManager(new AuthenticationConfiguration()).authenticate(usernamePassword);
+
+        String token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return token;
     }
 }

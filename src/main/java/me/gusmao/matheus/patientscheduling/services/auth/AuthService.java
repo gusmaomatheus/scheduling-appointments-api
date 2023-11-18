@@ -7,5 +7,5 @@ public interface AuthService {
 
     void register(RegisterDTO data);
 
-    void login(LoginDTO data) throws Exception;
+    String login(LoginDTO data) throws Exception;
 }
