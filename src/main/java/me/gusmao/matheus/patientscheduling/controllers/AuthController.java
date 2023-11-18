@@ -25,4 +25,11 @@ public class AuthController {
         return ResponseEntity.status(200).build();
     }
 
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
+        this.service.register(data);
+
+        return ResponseEntity.status(200).build();
+    }
+
 }
