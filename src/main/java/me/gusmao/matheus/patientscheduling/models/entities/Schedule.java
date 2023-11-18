@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.entities;
+package me.gusmao.matheus.patientscheduling.models.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.config;
+package me.gusmao.matheus.patientscheduling.infra;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

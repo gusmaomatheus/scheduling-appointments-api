@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.config;
+package me.gusmao.matheus.patientscheduling.infra;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

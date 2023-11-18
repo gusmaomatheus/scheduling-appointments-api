@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.dtos;
+package me.gusmao.matheus.patientscheduling.models.dtos;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;

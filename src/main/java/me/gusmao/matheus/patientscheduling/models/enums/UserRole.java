@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.enums;
+package me.gusmao.matheus.patientscheduling.models.enums;
 
 public enum UserRole {
     ADMIN("admin"),

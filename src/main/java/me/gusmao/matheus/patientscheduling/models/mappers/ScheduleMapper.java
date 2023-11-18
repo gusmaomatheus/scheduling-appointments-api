@@ -1,9 +1,9 @@
-package me.gusmao.matheus.patientscheduling.mappers;
+package me.gusmao.matheus.patientscheduling.models.mappers;
 
 import lombok.RequiredArgsConstructor;
-import me.gusmao.matheus.patientscheduling.dtos.ScheduleDTO;
-import me.gusmao.matheus.patientscheduling.entities.Patient;
-import me.gusmao.matheus.patientscheduling.entities.Schedule;
+import me.gusmao.matheus.patientscheduling.models.dtos.ScheduleDTO;
+import me.gusmao.matheus.patientscheduling.models.entities.Patient;
+import me.gusmao.matheus.patientscheduling.models.entities.Schedule;
 import me.gusmao.matheus.patientscheduling.services.patient.PatientServiceImpl;
 import org.springframework.stereotype.Component;
 

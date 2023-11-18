@@ -2,9 +2,9 @@ package me.gusmao.matheus.patientscheduling.services.schedule;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import me.gusmao.matheus.patientscheduling.dtos.ScheduleDTO;
-import me.gusmao.matheus.patientscheduling.entities.Schedule;
-import me.gusmao.matheus.patientscheduling.mappers.ScheduleMapper;
+import me.gusmao.matheus.patientscheduling.models.dtos.ScheduleDTO;
+import me.gusmao.matheus.patientscheduling.models.entities.Schedule;
+import me.gusmao.matheus.patientscheduling.models.mappers.ScheduleMapper;
 import me.gusmao.matheus.patientscheduling.repositories.ScheduleRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;

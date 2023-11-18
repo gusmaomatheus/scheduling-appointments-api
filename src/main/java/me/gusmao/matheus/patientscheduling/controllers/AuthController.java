@@ -2,9 +2,9 @@ package me.gusmao.matheus.patientscheduling.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import me.gusmao.matheus.patientscheduling.dtos.auth.LoginDTO;
-import me.gusmao.matheus.patientscheduling.dtos.auth.LoginResponseDTO;
-import me.gusmao.matheus.patientscheduling.dtos.auth.RegisterDTO;
+import me.gusmao.matheus.patientscheduling.models.dtos.auth.LoginDTO;
+import me.gusmao.matheus.patientscheduling.models.dtos.auth.LoginResponseDTO;
+import me.gusmao.matheus.patientscheduling.models.dtos.auth.RegisterDTO;
 import me.gusmao.matheus.patientscheduling.services.auth.AuthServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

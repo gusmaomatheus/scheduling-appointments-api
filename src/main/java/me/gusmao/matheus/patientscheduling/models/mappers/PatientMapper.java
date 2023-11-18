@@ -1,7 +1,7 @@
-package me.gusmao.matheus.patientscheduling.mappers;
+package me.gusmao.matheus.patientscheduling.models.mappers;
 
-import me.gusmao.matheus.patientscheduling.dtos.PatientDTO;
-import me.gusmao.matheus.patientscheduling.entities.Patient;
+import me.gusmao.matheus.patientscheduling.models.dtos.PatientDTO;
+import me.gusmao.matheus.patientscheduling.models.entities.Patient;
 
 public class PatientMapper {
 

@@ -1,7 +1,6 @@
-package me.gusmao.matheus.patientscheduling.dtos.auth;
+package me.gusmao.matheus.patientscheduling.models.dtos.auth;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 public record LoginDTO(
         @NotBlank(message = "O campo 'login' não pode ser vazio.")

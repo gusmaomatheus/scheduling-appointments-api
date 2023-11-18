@@ -1,7 +1,7 @@
-package me.gusmao.matheus.patientscheduling.adapters.mappers;
+package me.gusmao.matheus.patientscheduling.models.mappers;
 
-import me.gusmao.matheus.patientscheduling.domain.dtos.auth.RegisterDTO;
-import me.gusmao.matheus.patientscheduling.domain.models.User;
+import me.gusmao.matheus.patientscheduling.models.dtos.auth.RegisterDTO;
+import me.gusmao.matheus.patientscheduling.models.entities.User;
 
 public class UserMapper {
 

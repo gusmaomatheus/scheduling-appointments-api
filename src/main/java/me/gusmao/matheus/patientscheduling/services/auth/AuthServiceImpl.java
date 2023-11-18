@@ -1,12 +1,12 @@
-package me.gusmao.matheus.patientscheduling.domain.services.auth;
+package me.gusmao.matheus.patientscheduling.services.auth;
 
 import lombok.RequiredArgsConstructor;
-import me.gusmao.matheus.patientscheduling.adapters.mappers.UserMapper;
-import me.gusmao.matheus.patientscheduling.config.SecurityConfig;
-import me.gusmao.matheus.patientscheduling.domain.dtos.auth.LoginDTO;
-import me.gusmao.matheus.patientscheduling.domain.dtos.auth.RegisterDTO;
-import me.gusmao.matheus.patientscheduling.domain.models.User;
-import me.gusmao.matheus.patientscheduling.domain.repositories.UserRepository;
+import me.gusmao.matheus.patientscheduling.models.mappers.UserMapper;
+import me.gusmao.matheus.patientscheduling.infra.SecurityConfig;
+import me.gusmao.matheus.patientscheduling.models.dtos.auth.LoginDTO;
+import me.gusmao.matheus.patientscheduling.models.dtos.auth.RegisterDTO;
+import me.gusmao.matheus.patientscheduling.models.entities.User;
+import me.gusmao.matheus.patientscheduling.repositories.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.Authentication;
