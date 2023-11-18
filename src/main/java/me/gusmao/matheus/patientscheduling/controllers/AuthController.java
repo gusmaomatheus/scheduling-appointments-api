@@ -19,7 +19,7 @@ public class AuthController {
     private final AuthService service;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginDTO data) {
+    public ResponseEntity login(@RequestBody @Valid LoginDTO data) throws Exception {
         this.service.login(data);
 
         return ResponseEntity.status(200).build();

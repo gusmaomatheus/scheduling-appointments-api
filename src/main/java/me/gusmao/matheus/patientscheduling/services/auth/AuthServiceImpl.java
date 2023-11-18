@@ -1,16 +1,16 @@
 package me.gusmao.matheus.patientscheduling.services.auth;
 
 import lombok.RequiredArgsConstructor;
+import me.gusmao.matheus.patientscheduling.config.SecurityConfig;
 import me.gusmao.matheus.patientscheduling.dtos.auth.LoginDTO;
 import me.gusmao.matheus.patientscheduling.dtos.auth.RegisterDTO;
 import me.gusmao.matheus.patientscheduling.entities.User;
 import me.gusmao.matheus.patientscheduling.repositories.UserRepository;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService, UserDetailsService {
 
     private final UserRepository repository;
-    private final AuthenticationManager authManager;
+    private final SecurityConfig securityConfig;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -27,15 +27,15 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
 
     @Override
     public void register(RegisterDTO data) {
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
+        String encryptedPassword = this.securityConfig.passwordEncoder().encode(data.password());
         User user = new User(data.login(), encryptedPassword, data.role());
 
         this.repository.save(user);
     }
 
     @Override
-    public void login(LoginDTO data) {
+    public void login(LoginDTO data) throws Exception {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var auth = this.authManager.authenticate(usernamePassword);
+        var auth = this.securityConfig.authenticationManager(new AuthenticationConfiguration()).authenticate(usernamePassword);
     }
 }
