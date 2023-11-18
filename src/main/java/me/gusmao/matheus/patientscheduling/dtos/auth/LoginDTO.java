@@ -1,9 +1,9 @@
-package me.gusmao.matheus.patientscheduling.dtos;
+package me.gusmao.matheus.patientscheduling.dtos.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record UserDTO(
+public record LoginDTO(
         @NotBlank(message = "O campo 'login' não pode ser vazio.")
         @Size(message = "O login deve ter entre 10 e 50 caracteres.", min = 10, max = 50)
         String login,
