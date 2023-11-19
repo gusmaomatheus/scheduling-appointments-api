@@ -11,6 +11,6 @@ import java.time.LocalDateTime;
 @Data
 public class ExceptionResponse {
     private String message;
-    private String status;
+    private Integer status;
     private LocalDateTime dateOccurrence;
 }

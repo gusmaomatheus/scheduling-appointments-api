@@ -2,6 +2,7 @@ package me.gusmao.matheus.patientscheduling.services.patient;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import me.gusmao.matheus.patientscheduling.exceptions.AlreadyCpfExistsException;
 import me.gusmao.matheus.patientscheduling.models.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.models.entities.Patient;
 import me.gusmao.matheus.patientscheduling.models.mappers.PatientMapper;
@@ -33,6 +34,10 @@ public class PatientServiceImpl implements PatientService {
         String cpf = PatientUtils.formattedCpf(patient);
         patient.setCpf(cpf);
 
+        if (this.existsCpf(patient.getCpf())) {
+            throw new AlreadyCpfExistsException("Já existe um paciente registrado com o cpf '%s'.".formatted(patient.getCpf()));
+        }
+
         return this.repository.save(patient);
     }
 
@@ -63,6 +68,10 @@ public class PatientServiceImpl implements PatientService {
         String cpf = PatientUtils.formattedCpf(patient);
         patient.setCpf(cpf);
 
+        if (this.existsCpf(patient.getCpf())) {
+            throw new AlreadyCpfExistsException("Já existe um paciente registrado com o cpf '%s'.".formatted(patient.getCpf()));
+        }
+
         this.repository.save(patient);
     }
 
@@ -71,8 +80,7 @@ public class PatientServiceImpl implements PatientService {
         this.repository.deleteById(id);
     }
 
-    public boolean existsCpf(PatientDTO data) {
-        String cpf = PatientUtils.formattedCpf(PatientMapper.transform(data));
+    public boolean existsCpf(String cpf) {
         Optional<Patient> patient = this.repository.findByCpf(cpf);
 
         return patient.isPresent();
