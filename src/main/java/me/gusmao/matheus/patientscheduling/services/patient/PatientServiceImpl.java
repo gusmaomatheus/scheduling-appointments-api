@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.beans.FeatureDescriptor;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -29,23 +30,24 @@ public class PatientServiceImpl implements PatientService {
     public Patient save(PatientDTO data) {
         Patient patient = PatientMapper.transform(data);
 
-        PatientUtils.formatCpf(patient);
+        String cpf = PatientUtils.formattedCpf(patient);
+        patient.setCpf(cpf);
 
         return this.repository.save(patient);
     }
 
     @Override
     public Patient findById(Long id) {
-        Patient patient = this.repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id)));
 
-        return patient;
+        return this.repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
+        );
     }
 
     @Override
     public Set<Patient> getAll() {
-        Set<Patient> patients = new HashSet<>(this.repository.findAll());
 
-        return patients;
+        return new HashSet<>(this.repository.findAll());
     }
 
     @Override
@@ -58,7 +60,8 @@ public class PatientServiceImpl implements PatientService {
 
         BeanUtils.copyProperties(data, patient, nullProperties);
 
-        PatientUtils.formatCpf(patient);
+        String cpf = PatientUtils.formattedCpf(patient);
+        patient.setCpf(cpf);
 
         this.repository.save(patient);
     }
