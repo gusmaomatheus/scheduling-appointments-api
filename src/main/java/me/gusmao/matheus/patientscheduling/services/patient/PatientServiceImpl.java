@@ -6,6 +6,7 @@ import me.gusmao.matheus.patientscheduling.models.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.models.entities.Patient;
 import me.gusmao.matheus.patientscheduling.models.mappers.PatientMapper;
 import me.gusmao.matheus.patientscheduling.repositories.PatientRepository;
+import me.gusmao.matheus.patientscheduling.utils.PatientUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -28,7 +29,7 @@ public class PatientServiceImpl implements PatientService {
     public Patient save(PatientDTO data) {
         Patient patient = PatientMapper.transform(data);
 
-        this.formatCpf(patient);
+        PatientUtils.formatCpf(patient);
 
         return this.repository.save(patient);
     }
@@ -57,7 +58,7 @@ public class PatientServiceImpl implements PatientService {
 
         BeanUtils.copyProperties(data, patient, nullProperties);
 
-        this.formatCpf(patient);
+        PatientUtils.formatCpf(patient);
 
         this.repository.save(patient);
     }
@@ -65,12 +66,5 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void delete(Long id) {
         this.repository.deleteById(id);
-    }
-
-    private void formatCpf(Patient patient) {
-        String cpf = patient.getCpf();
-        String cpfFormatted = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
-
-        patient.setCpf(cpfFormatted);
     }
 }
