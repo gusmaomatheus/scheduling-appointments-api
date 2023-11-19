@@ -1,9 +1,9 @@
 package me.gusmao.matheus.patientscheduling.services.patient;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.gusmao.matheus.patientscheduling.exceptions.patient.AlreadyCpfExistsException;
 import me.gusmao.matheus.patientscheduling.exceptions.patient.AlreadyEmailExistsException;
+import me.gusmao.matheus.patientscheduling.exceptions.patient.PatientNotFoundException;
 import me.gusmao.matheus.patientscheduling.models.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.models.entities.Patient;
 import me.gusmao.matheus.patientscheduling.models.mappers.PatientMapper;
@@ -50,7 +50,7 @@ public class PatientServiceImpl implements PatientService {
     public Patient findById(Long id) {
 
         return this.repository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
+                () -> new PatientNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
         );
     }
 
@@ -69,7 +69,9 @@ public class PatientServiceImpl implements PatientService {
                 .filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null)
                 .toArray(String[]::new);
 
-        Patient patient = this.findById(id);
+        Patient patient = this.repository.findById(id).orElseThrow(
+                () -> new PatientNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
+        );
 
         BeanUtils.copyProperties(data, patient, nullProperties);
 
@@ -89,7 +91,11 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void delete(Long id) {
-        this.repository.deleteById(id);
+        Patient patient = this.repository.findById(id).orElseThrow(
+                () -> new PatientNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
+        );
+
+        this.repository.delete(patient);
     }
 
     public boolean existsCpf(String cpf) {
