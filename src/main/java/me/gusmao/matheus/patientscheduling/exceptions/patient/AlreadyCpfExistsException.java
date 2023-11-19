@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.exceptions;
+package me.gusmao.matheus.patientscheduling.exceptions.patient;
 
 public class AlreadyCpfExistsException extends RuntimeException {
 
