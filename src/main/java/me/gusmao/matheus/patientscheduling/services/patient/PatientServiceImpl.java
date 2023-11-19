@@ -2,7 +2,8 @@ package me.gusmao.matheus.patientscheduling.services.patient;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import me.gusmao.matheus.patientscheduling.exceptions.AlreadyCpfExistsException;
+import me.gusmao.matheus.patientscheduling.exceptions.patient.AlreadyCpfExistsException;
+import me.gusmao.matheus.patientscheduling.exceptions.patient.AlreadyEmailExistsException;
 import me.gusmao.matheus.patientscheduling.models.dtos.PatientDTO;
 import me.gusmao.matheus.patientscheduling.models.entities.Patient;
 import me.gusmao.matheus.patientscheduling.models.mappers.PatientMapper;
@@ -59,7 +60,10 @@ public class PatientServiceImpl implements PatientService {
     public void update(Long id, PatientDTO data) {
         final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
 
-        String[] nullProperties = Stream.of(beanWrapper.getPropertyDescriptors()).map(FeatureDescriptor::getName).filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null).toArray(String[]::new);
+        String[] nullProperties = Stream.of(beanWrapper.getPropertyDescriptors())
+                .map(FeatureDescriptor::getName)
+                .filter(propertyName -> beanWrapper.getPropertyValue(propertyName) == null)
+                .toArray(String[]::new);
 
         Patient patient = this.findById(id);
 
@@ -82,6 +86,12 @@ public class PatientServiceImpl implements PatientService {
 
     public boolean existsCpf(String cpf) {
         Optional<Patient> patient = this.repository.findByCpf(cpf);
+
+        return patient.isPresent();
+    }
+
+    public boolean existsEmail(String email) {
+        Optional<Patient> patient = this.repository.findByEmail(email);
 
         return patient.isPresent();
     }
