@@ -59,20 +59,19 @@ Ao desenvolver esta aplicação, foram seguidas algumas práticas fundamentais:
     INSERT INTO users VALUES(1, 'admin', 'admin', 0)
     ```
 
-3. Depois faça uma POST em http://localhost:8080/api/auth/login com o seguinte corpo:
+3. Depois faça um POST em http://localhost:8080/api/auth/login com o seguinte corpo:
     ```json
     {
         "login": "admin",
-        "password": "admin
+        "password": "admin"
     }
     ```
 4. Com o token que ele irá gerar você poderá se autenticar na aplicação.
     
     Postman:
-    ![postman-example](https://i.imgur.com/jqMOIpp.png)
 
-    Insomnia:
-    ![insomnia-example](https://i.imgur.com/YrnDteX.png)
+   
+    ![postman-example](https://i.imgur.com/jqMOIpp.png)
 
 
 ## API Endpoints 🌐
@@ -100,8 +99,7 @@ Resultado esperado (200 - Ok):
 
 ```json
 {
-    "token": "eyJhbGciOiJIuZi1nIisinR5cci6iKPxvcj9.eyjzdWIIOIIXmjm0nty30DKqweIktainnpvaFtZSI6IKG4.
-    4pcPyMD09olPSyXnrXCjTwXyr4BsezdI1AVTmud2fU4"
+    "token": "eyJhbGciOiJIuZi1nIisinR5cci6iKPxvcj9.eyjzdWIIOIIXmjm0nty30DKqweIktainnpvaFtZSI6IKG4.4pcPyMD09olPSyXnrXCjTwXyr4BsezdI1AVTmud2fU4"
 }
 ```
 
