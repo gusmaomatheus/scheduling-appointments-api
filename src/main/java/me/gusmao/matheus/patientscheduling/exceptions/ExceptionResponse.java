@@ -1,4 +1,4 @@
-package me.gusmao.matheus.patientscheduling.exceptions.model;
+package me.gusmao.matheus.patientscheduling.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -39,6 +39,10 @@ public class PatientServiceImpl implements PatientService {
             throw new AlreadyCpfExistsException("Já existe um paciente registrado com o cpf '%s'.".formatted(patient.getCpf()));
         }
 
+        if (this.existsEmail(patient.getEmail())) {
+            throw new AlreadyEmailExistsException("Já existe um paciente registrado com o email '%s'.".formatted(patient.getEmail()));
+        }
+
         return this.repository.save(patient);
     }
 
@@ -74,6 +78,10 @@ public class PatientServiceImpl implements PatientService {
 
         if (this.existsCpf(patient.getCpf())) {
             throw new AlreadyCpfExistsException("Já existe um paciente registrado com o cpf '%s'.".formatted(patient.getCpf()));
+        }
+
+        if (this.existsEmail(patient.getEmail())) {
+            throw new AlreadyEmailExistsException("Já existe um paciente registrado com o email '%s'.".formatted(patient.getEmail()));
         }
 
         this.repository.save(patient);
