@@ -70,4 +70,11 @@ public class PatientServiceImpl implements PatientService {
     public void delete(Long id) {
         this.repository.deleteById(id);
     }
+
+    public boolean existsCpf(PatientDTO data) {
+        String cpf = PatientUtils.formattedCpf(PatientMapper.transform(data));
+        Optional<Patient> patient = this.repository.findByCpf(cpf);
+
+        return patient.isPresent();
+    }
 }
