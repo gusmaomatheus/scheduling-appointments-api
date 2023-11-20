@@ -137,7 +137,7 @@ Exemplo:
 
 ```json
 {
-    "firstName": "Caio",
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "62306962073",
 	"email": "caio.castro@gmail.com"
@@ -148,8 +148,8 @@ Resultado esperado: (201 - Created)
 
 ```json
 {
-    "id": 1,
-    "firstName": "Caio",
+	"id": 1,
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "623.069.620-73",
 	"email": "caio.castro@gmail.com"
@@ -167,11 +167,11 @@ Resultado esperado (200 - Ok):
 ```json
 [
     {
-        "id": 1,
+	"id": 1,
         "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "caio.castro@gmail.com"
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "caio.castro@gmail.com"
     },
     {
         "id": 2,
@@ -193,8 +193,8 @@ Resultado esperado (200 - Ok):
 
 ```json
 {
-    "id": 1,
-    "firstName": "Caio",
+    	"id": 1,
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "623.069.620-73",
 	"email": "caio.castro@gmail.com"
@@ -219,8 +219,8 @@ Resultado esperado (200 - Ok):
 
 ```json
 {
-    "id": 1,
-    "firstName": "Caio",
+    	"id": 1,
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "623.069.620-73",
 	"email": "castro.caio@gmail.com"
@@ -268,9 +268,9 @@ Resultado esperado: (201 - Created)
     "patient": {
         "id": 1,
         "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "castro.caio@gmail.com"        
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "castro.caio@gmail.com"        
     } 
 }
 ```
@@ -291,9 +291,9 @@ Resultado esperado (200 - Ok):
         "date": "2023-11-25T16:19:04",
         "createdAt": "2023-11-19T17:16:11.220605",
         "patient": {
-            "id": 1,
-            "firstName": "Caio",
-	        "lastName": "Castro",
+		"id": 1,
+            	"firstName": "Caio",
+		"lastName": "Castro",
 	        "cpf": "623.069.620-73",
 	        "email": "castro.caio@gmail.com"        
         } 
@@ -304,11 +304,11 @@ Resultado esperado (200 - Ok):
         "date": "2023-11-22T16:19:04",
         "createdAt": "2023-11-14T17:16:11.220605",
         "patient": {
-            "id": 2,
-            "firstName": "Matheus",
-            "lastName": "Gusmão",
-            "cpf": "862.379.190-82",
-            "email": "gusmao.matheus@gmail.com"    
+		"id": 2,
+		"firstName": "Matheus",
+		"lastName": "Gusmão",
+		"cpf": "862.379.190-82",
+		"email": "gusmao.matheus@gmail.com"    
         } 
     }
 ]
@@ -329,11 +329,11 @@ Resultado esperado (200 - Ok):
     "date": "2023-11-25T16:19:04",
     "createdAt": "2023-11-19T17:16:11.220605",
     "patient": {
-        "id": 1,
-        "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "castro.caio@gmail.com"        
+	"id": 1,
+	"firstName": "Caio",
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "castro.caio@gmail.com"        
     } 
 }
 ```
@@ -363,9 +363,9 @@ Resultado esperado (200 - Ok):
     "patient": {
         "id": 1,
         "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "castro.caio@gmail.com"        
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "castro.caio@gmail.com"        
     } 
 }
 ```
