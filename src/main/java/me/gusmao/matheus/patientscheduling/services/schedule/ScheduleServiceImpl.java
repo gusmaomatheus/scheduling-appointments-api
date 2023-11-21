@@ -2,6 +2,7 @@ package me.gusmao.matheus.patientscheduling.services.schedule;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import me.gusmao.matheus.patientscheduling.exceptions.schedule.ScheduleNotFoundException;
 import me.gusmao.matheus.patientscheduling.models.dtos.ScheduleDTO;
 import me.gusmao.matheus.patientscheduling.models.entities.Schedule;
 import me.gusmao.matheus.patientscheduling.models.mappers.ScheduleMapper;
@@ -35,7 +36,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule findById(Long id) {
         Schedule schedule = this.repository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Não foi encontrado nenhuma consulta com o id '%s'.".formatted(id))
+                () -> new ScheduleNotFoundException("Não foi encontrado nenhuma consulta com o id '%s'.".formatted(id))
         );
 
         return schedule;
@@ -51,7 +52,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void update(Long id, ScheduleDTO data) {
         final BeanWrapper beanWrapper = new BeanWrapperImpl(data);
-        Schedule schedule = this.findById(id);
+        Schedule schedule = this.repository.findById(id).orElseThrow(
+                () -> new ScheduleNotFoundException("Não foi encontrado nenhuma consulta com o id '%s'.".formatted(id))
+        );
 
         String[] nullProperties = Arrays.stream(beanWrapper.getPropertyDescriptors())
                 .map(FeatureDescriptor::getName)
@@ -65,6 +68,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void delete(Long id) {
-        this.repository.deleteById(id);
+        Schedule schedule = this.repository.findById(id).orElseThrow(
+                () -> new ScheduleNotFoundException("Não foi encontrado nenhuma consulta com o id '%s'.".formatted(id))
+        );
+
+        this.repository.delete(schedule);
     }
 }
