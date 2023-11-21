@@ -59,20 +59,19 @@ Ao desenvolver esta aplicação, foram seguidas algumas práticas fundamentais:
     INSERT INTO users VALUES(1, 'admin', 'admin', 0)
     ```
 
-3. Depois faça uma POST em http://localhost:8080/api/auth/login com o seguinte corpo:
+3. Depois faça um POST em http://localhost:8080/api/auth/login com o seguinte corpo:
     ```json
     {
         "login": "admin",
-        "password": "admin
+        "password": "admin"
     }
     ```
 4. Com o token que ele irá gerar você poderá se autenticar na aplicação.
     
     Postman:
-    ![postman-example](https://i.imgur.com/jqMOIpp.png)
 
-    Insomnia:
-    ![insomnia-example](https://i.imgur.com/YrnDteX.png)
+   
+    ![postman-example](https://i.imgur.com/jqMOIpp.png)
 
 
 ## API Endpoints 🌐
@@ -100,8 +99,7 @@ Resultado esperado (200 - Ok):
 
 ```json
 {
-    "token": "eyJhbGciOiJIuZi1nIisinR5cci6iKPxvcj9.eyjzdWIIOIIXmjm0nty30DKqweIktainnpvaFtZSI6IKG4.
-    4pcPyMD09olPSyXnrXCjTwXyr4BsezdI1AVTmud2fU4"
+    "token": "eyJhbGciOiJIuZi1nIisinR5cci6iKPxvcj9.eyjzdWIIOIIXmjm0nty30DKqweIktainnpvaFtZSI6IKG4.4pcPyMD09olPSyXnrXCjTwXyr4BsezdI1AVTmud2fU4"
 }
 ```
 
@@ -139,7 +137,7 @@ Exemplo:
 
 ```json
 {
-    "firstName": "Caio",
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "62306962073",
 	"email": "caio.castro@gmail.com"
@@ -150,8 +148,8 @@ Resultado esperado: (201 - Created)
 
 ```json
 {
-    "id": 1,
-    "firstName": "Caio",
+	"id": 1,
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "623.069.620-73",
 	"email": "caio.castro@gmail.com"
@@ -169,11 +167,11 @@ Resultado esperado (200 - Ok):
 ```json
 [
     {
-        "id": 1,
+	"id": 1,
         "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "caio.castro@gmail.com"
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "caio.castro@gmail.com"
     },
     {
         "id": 2,
@@ -195,8 +193,8 @@ Resultado esperado (200 - Ok):
 
 ```json
 {
-    "id": 1,
-    "firstName": "Caio",
+    	"id": 1,
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "623.069.620-73",
 	"email": "caio.castro@gmail.com"
@@ -221,8 +219,8 @@ Resultado esperado (200 - Ok):
 
 ```json
 {
-    "id": 1,
-    "firstName": "Caio",
+    	"id": 1,
+    	"firstName": "Caio",
 	"lastName": "Castro",
 	"cpf": "623.069.620-73",
 	"email": "castro.caio@gmail.com"
@@ -270,9 +268,9 @@ Resultado esperado: (201 - Created)
     "patient": {
         "id": 1,
         "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "castro.caio@gmail.com"        
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "castro.caio@gmail.com"        
     } 
 }
 ```
@@ -293,9 +291,9 @@ Resultado esperado (200 - Ok):
         "date": "2023-11-25T16:19:04",
         "createdAt": "2023-11-19T17:16:11.220605",
         "patient": {
-            "id": 1,
-            "firstName": "Caio",
-	        "lastName": "Castro",
+		"id": 1,
+            	"firstName": "Caio",
+		"lastName": "Castro",
 	        "cpf": "623.069.620-73",
 	        "email": "castro.caio@gmail.com"        
         } 
@@ -306,11 +304,11 @@ Resultado esperado (200 - Ok):
         "date": "2023-11-22T16:19:04",
         "createdAt": "2023-11-14T17:16:11.220605",
         "patient": {
-            "id": 2,
-            "firstName": "Matheus",
-            "lastName": "Gusmão",
-            "cpf": "862.379.190-82",
-            "email": "gusmao.matheus@gmail.com"    
+		"id": 2,
+		"firstName": "Matheus",
+		"lastName": "Gusmão",
+		"cpf": "862.379.190-82",
+		"email": "gusmao.matheus@gmail.com"    
         } 
     }
 ]
@@ -331,11 +329,11 @@ Resultado esperado (200 - Ok):
     "date": "2023-11-25T16:19:04",
     "createdAt": "2023-11-19T17:16:11.220605",
     "patient": {
-        "id": 1,
-        "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "castro.caio@gmail.com"        
+	"id": 1,
+	"firstName": "Caio",
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "castro.caio@gmail.com"        
     } 
 }
 ```
@@ -365,9 +363,9 @@ Resultado esperado (200 - Ok):
     "patient": {
         "id": 1,
         "firstName": "Caio",
-	    "lastName": "Castro",
-	    "cpf": "623.069.620-73",
-	    "email": "castro.caio@gmail.com"        
+	"lastName": "Castro",
+	"cpf": "623.069.620-73",
+	"email": "castro.caio@gmail.com"        
     } 
 }
 ```
