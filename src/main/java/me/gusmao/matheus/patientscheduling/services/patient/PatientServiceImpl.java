@@ -73,14 +73,14 @@ public class PatientServiceImpl implements PatientService {
                 () -> new PatientNotFoundException("Não foi encontrado nenhum paciente com o id '%s'.".formatted(id))
         );
 
-        BeanUtils.copyProperties(data, patient, nullProperties);
+        String cpf = PatientUtils.formattedCpf(PatientMapper.transform(data));
 
-        String cpf = PatientUtils.formattedCpf(patient);
-        patient.setCpf(cpf);
-
-        if (this.existsCpf(patient.getCpf())) {
+        if (this.existsCpf(cpf)) {
             throw new AlreadyCpfExistsException("Já existe um paciente registrado com o cpf '%s'.".formatted(patient.getCpf()));
         }
+
+        BeanUtils.copyProperties(data, patient, nullProperties);
+        patient.setCpf(cpf);
 
         if (this.existsEmail(patient.getEmail())) {
             throw new AlreadyEmailExistsException("Já existe um paciente registrado com o email '%s'.".formatted(patient.getEmail()));
@@ -100,6 +100,7 @@ public class PatientServiceImpl implements PatientService {
 
     public boolean existsCpf(String cpf) {
         Optional<Patient> patient = this.repository.findByCpf(cpf);
+
 
         return patient.isPresent();
     }
