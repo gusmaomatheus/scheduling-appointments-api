@@ -1,7 +1,7 @@
 package me.gusmao.matheus.patientscheduling.services.schedule;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import me.gusmao.matheus.patientscheduling.exceptions.schedule.AlreadyScheduleDateRegisteredException;
 import me.gusmao.matheus.patientscheduling.exceptions.schedule.ScheduleNotFoundException;
 import me.gusmao.matheus.patientscheduling.models.dtos.ScheduleDTO;
 import me.gusmao.matheus.patientscheduling.models.entities.Schedule;
@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.beans.FeatureDescriptor;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -29,6 +31,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule save(ScheduleDTO data) {
         Schedule schedule = mapper.transform(data);
+
+        if (this.alreadyScheduleRegisteredDate(schedule.getDate())) {
+            throw new AlreadyScheduleDateRegisteredException("Já existe uma consulta agendada nessa data.");
+        }
 
         return this.repository.save(schedule);
     }
@@ -63,6 +69,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         BeanUtils.copyProperties(data, schedule, nullProperties);
 
+        if (this.alreadyScheduleRegisteredDate(schedule.getDate())) {
+            throw new AlreadyScheduleDateRegisteredException("Já existe uma consulta agendada nessa data.");
+        }
+
         this.repository.save(schedule);
     }
 
@@ -73,5 +83,11 @@ public class ScheduleServiceImpl implements ScheduleService {
         );
 
         this.repository.delete(schedule);
+    }
+
+    public boolean alreadyScheduleRegisteredDate(LocalDateTime date) {
+        Optional<Schedule> schedule = this.repository.findByDate(date);
+
+        return schedule.isPresent();
     }
 }
